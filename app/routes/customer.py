@@ -44,31 +44,11 @@ def read_all_customers():
 
     return jsonify(customers_response), 200
 
+
 @bp.route("<user_name>/orders", methods=["GET"])
-def read_all_orders(user_name):
-    sort_query = request.args.get("sort")
+def read_all_orders_for_one_customer(user_name):
     order_query = Order.query.filter(Order.user_name == user_name)
-    if sort_query == "asc":
-        order_query = order_query.order_by(Order.message.asc())
-    elif sort_query == "likes":
-        order_query = order_query.order_by(order.likes_count.desc())
-    else:
-        order_query = order_query.order_by(Order.order_id.desc())
+
     order_response = [order.to_dict() for order in order_query]
 
     return jsonify(order_response), 200
-
-
-# @bp.route("<customer_id>/orders", methods=["GET"])
-# def read_all_orders(customer_id):
-#     sort_query = request.args.get("sort")
-#     order_query = Order.query.filter(Order.customer_id == customer_id)
-#     if sort_query == "asc":
-#         order_query = order_query.order_by(Order.message.asc())
-#     elif sort_query == "likes":
-#         order_query = order_query.order_by(order.likes_count.desc())
-#     else:
-#         order_query = order_query.order_by(Order.order_id.desc())
-#     order_response = [order.to_dict() for order in order_query]
-
-#     return jsonify(order_response), 200

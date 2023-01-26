@@ -1,21 +1,9 @@
 from flask import Blueprint, request, jsonify, make_response, abort
 from app import db
 from app.models.label import Label
+from app.routes.helper_functions import validate_model
 
 bp = Blueprint("label_bp", __name__, url_prefix="/labels")
-
-def validate_model(cls, model_id):
-    try:
-        model_id = int(model_id)
-    except:
-        abort(make_response({"message": f"{cls.__name__} {model_id} invalid"}, 400))
-
-    model = cls.query.get(model_id)
-
-    if not model:
-        abort(make_response({"message": f"{cls.__name__} {model_id} not found"}, 404))
-
-    return model
 
 
 @bp.route("", methods=["POST"])
@@ -29,6 +17,7 @@ def create_order():
     order_dict = new_order.to_dict()
 
     return make_response(jsonify({"order": order_dict}), 201)
+
 
 @bp.route("<order_id>", methods=["DELETE"])
 def delete_order(order_id):

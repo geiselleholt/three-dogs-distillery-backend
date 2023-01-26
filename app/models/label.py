@@ -17,7 +17,7 @@ class Label(db.Model):
             name=self.name,
             message=self.message,
             image=self.image,
-            item_id=self.item_id,
+            item_id=self.item_id
         )
 
     @classmethod
@@ -27,7 +27,7 @@ class Label(db.Model):
             name=label_data["name"],
             message=label_data["message"],
             image=label_data["image"],
-            item_id=label_data["item_id"],
+            item_id=label_data["item_id"]
         )
 
         return new_label

@@ -19,7 +19,7 @@ class Item(db.Model):
             bottle_type=self.bottle_type,
             bottle_quantity=self.bottle_quantity,
             age_time=self.age_time,
-            order_id=self.order_id,           
+            order_id=self.order_id           
         )
 
     @classmethod
@@ -30,7 +30,7 @@ class Item(db.Model):
             bottle_type=item_data["bottle_type"],
             bottle_quantity=item_data["bottle_quantity"],
             age_time=item_data["age_time"],
-            order_id=item_data["order_id"],
+            order_id=item_data["order_id"]
         )
 
         return new_item

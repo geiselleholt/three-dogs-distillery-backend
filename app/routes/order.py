@@ -2,21 +2,9 @@ from flask import Blueprint, request, jsonify, make_response, abort
 from app import db
 from app.models.order import Order
 from app.models.item import Item
+from app.routes.helper_functions import validate_model
 
 bp = Blueprint("order_bp", __name__, url_prefix="/orders")
-
-def validate_model(cls, model_id):
-    try:
-        model_id = int(model_id)
-    except:
-        abort(make_response({"message": f"{cls.__name__} {model_id} invalid"}, 400))
-
-    model = cls.query.get(model_id)
-
-    if not model:
-        abort(make_response({"message": f"{cls.__name__} {model_id} not found"}, 404))
-
-    return model
 
 
 @bp.route("", methods=["POST"])
@@ -42,12 +30,10 @@ def delete_order(order_id):
     return {"details": f"order {Order.order_id} successfully deleted"}
 
 
-@bp.route("<order_id>/like", methods=["PUT"])
-def increase_likes(order_id):
-    order = validate_model(Order, order_id)
+@bp.route("<order_id/items", methods=["GET"])
+def read_all_items_for_one_order(order_id):
+    item_query = Item.query.filter(Item.order_id == order_id)
 
-    request_body = request.get_json()
-    order.likes_count = request_body["likes_count"]
-    db.session.commit()
+    item_response = [item.to_dict() for item in item_query]
 
-    return make_response(jsonify({"order": order.to_dict()}), 200)
+    return jsonify(item_response), 200

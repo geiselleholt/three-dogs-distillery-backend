@@ -2,30 +2,9 @@ from flask import Blueprint, request, jsonify, make_response, abort
 from app import db
 from app.models.item import Item
 from app.models.label import Label
+from app.routes.helper_functions import validate_model
 
 bp = Blueprint("item_bp", __name__, url_prefix="/items")
-
-def validate_model(cls, model_id):
-    try:
-        model_id = int(model_id)
-    except:
-        abort(make_response({"message": f"{cls.__name__} {model_id} invalid"}, 400))
-
-    model = cls.query.get(model_id)
-
-    if not model:
-        abort(make_response({"message": f"{cls.__name__} {model_id} not found"}, 404))
-
-    return model
-
-
-@bp.route("", methods=["GET"])
-def read_all_items():
-    items = Item.query.all()
-
-    items_response = [item.to_dict() for item in items]
-
-    return jsonify(items_response), 200
 
 
 @bp.route("", methods=["POST"])

@@ -8,17 +8,21 @@ class Order(db.Model):
     delivery_date = db.Column(db.String)
     status = db.Column(db.String)
     customer_id = db.Column(db.Integer, db.ForeignKey("customer.customer_id"))
-    customer = db.relationship("Customer", back_populates="orders")
+    # customer = db.relationship("Customer", back_populates="orders")
 
-    def to_dict(self):
-        return dict(
+    def to_dict(self, order_data):
+        order_dict = dict(
             id=self.order_id,
             sub_total=self.sub_total,
             total=self.total,
             delivery_date=self.delivery_date,
             status=self.status,
-            customer_id=self.customer_id,
         )
+
+        if self.customer_id:
+            order_dict["customer_id"] = self.customer_id
+        
+        return order_dict
 
     @classmethod
     def from_dict(cls, order_data):
@@ -27,7 +31,7 @@ class Order(db.Model):
             total=order_data["total"],
             delivery_date=order_data["delivery_date"],
             status=order_data["status"],
-            customer_id=order_data["customer_id"],
+            customer_id=order_data["customer_id"]
         )
 
         return new_order
