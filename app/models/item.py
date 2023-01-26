@@ -6,7 +6,7 @@ class Item(db.Model):
     spirit_type = db.Column(db.String)
     spirit_flavor = db.Column(db.String)
     bottle_type = db.Column(db.String)
-    bottle_quantity = db.Column(db.String)
+    bottle_quantity = db.Column(db.Integer)
     age_time = db.Column(db.String)
     order_id = db.Column(db.Integer, db.ForeignKey("order.order_id"))
     order = db.relationship("Order", back_populates="items")
