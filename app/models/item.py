@@ -10,6 +10,7 @@ class Item(db.Model):
     age_time = db.Column(db.String)
     order_id = db.Column(db.Integer, db.ForeignKey("order.order_id"))
     order = db.relationship("Order", back_populates="items")
+    label = db.relationship("Label", back_populates="item")
 
     def to_dict(self):
         return dict(

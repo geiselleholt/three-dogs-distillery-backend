@@ -9,6 +9,7 @@ class Order(db.Model):
     status = db.Column(db.String)
     customer_id = db.Column(db.Integer, db.ForeignKey("customer.customer_id"))
     customer = db.relationship("Customer", back_populates="orders")
+    items = db.relationship("Item", back_populates="order")
 
     def to_dict(self, order_data):
         order_dict = dict(

@@ -8,7 +8,7 @@ class Label(db.Model):
     message = db.Column(db.String)
     image = db.Column(db.LargeBinary)
     item_id = db.Column(db.Integer, db.ForeignKey("item.item_id"))
-    item = db.relationship("Item", back_populates="labels")
+    item = db.relationship("Item", back_populates="label")
 
     def to_dict(self):
         return dict(

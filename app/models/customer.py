@@ -11,7 +11,7 @@ class Customer(db.Model):
     email = db.Column(db.String)
     phone_number = db.Column(db.String)
     address = db.Column(db.String)
-    order = db.relationship("Order", back_populates="customer")
+    orders = db.relationship("Order", back_populates="customer")
 
     def to_dict(self):
         customer_as_dict = {
