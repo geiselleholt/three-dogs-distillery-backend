@@ -15,7 +15,7 @@ def create_order():
     db.session.add(new_order)
     db.session.commit()
 
-    order_dict = new_order.to_dict()
+    order_dict = new_order.to_dict(request_body)
 
     return make_response(jsonify({"order": order_dict}), 201)
 
@@ -30,10 +30,22 @@ def delete_order(order_id):
     return {"details": f"order {Order.order_id} successfully deleted"}
 
 
-@bp.route("<order_id>/items", methods=["GET"])
-def read_all_items_for_one_order(order_id):
-    item_query = Item.query.filter(Item.order_id == order_id)
 
-    item_response = [item.to_dict() for item in item_query]
+@bp.route("<customer_id>", methods=["GET"])
+def read_all_orders_for_one_customer(customer_id):
+    order_query = Order.query.filter(Order.customer_id == customer_id)
 
-    return jsonify(item_response), 200
+    order_response = [order.to_dict() for order in order_query]
+
+    return jsonify(order_response), 200
+
+
+@bp.route("<order_id>/status", methods=["PUT"])
+def increase_likes(order_id):
+    order = validate_model(Order, order_id)
+
+    request_body = request.get_json()
+    order.status = request_body["status"]
+    db.session.commit()
+
+    return make_response(jsonify({"order": order.to_dict()}), 200)

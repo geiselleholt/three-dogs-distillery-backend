@@ -24,7 +24,7 @@ def check_duplicates(customer_user_name):
     """
     check whether or not a customer with a particular user_name already exists
     """
-    test_customer = Customer.query.filter(customer.user_name == customer_user_name).first()
+    test_customer = Customer.query.filter(ustomer.user_name == customer_user_name).first()
     if test_customer is not None:
         abort(
             make_response(
@@ -45,10 +45,10 @@ def read_all_customers():
     return jsonify(customers_response), 200
 
 
-@bp.route("<user_name>/orders", methods=["GET"])
-def read_all_orders_for_one_customer(user_name):
-    order_query = Order.query.filter(Order.user_name == user_name)
+@bp.route("<user_name>", methods=["GET"])
+def read_one_customer(user_name):
+    customer_query = Customer.query.filter(Customer.user_name == user_name)
 
-    order_response = [order.to_dict() for order in order_query]
+    customer_response = [customer.to_dict() for customer in customer_query]
 
-    return jsonify(order_response), 200
+    return jsonify(customer_response), 200
