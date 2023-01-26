@@ -8,7 +8,7 @@ class Order(db.Model):
     delivery_date = db.Column(db.String)
     status = db.Column(db.String)
     customer_id = db.Column(db.Integer, db.ForeignKey("customer.customer_id"))
-    # customer = db.relationship("Customer", back_populates="orders")
+    customer = db.relationship("Customer", back_populates="orders")
 
     def to_dict(self, order_data):
         order_dict = dict(

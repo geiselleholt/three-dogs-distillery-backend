@@ -3,6 +3,7 @@ from app import db
 
 class Customer(db.Model):
     customer_id = db.Column(db.Integer, primary_key=True)
+    is_admin = db.Column(db.Boolean, default = False)
     user_name = db.Column(db.String)
     password = db.Column(db.String)
     first_name = db.Column(db.String)

@@ -30,7 +30,7 @@ def delete_order(order_id):
     return {"details": f"order {Order.order_id} successfully deleted"}
 
 
-@bp.route("<order_id/items", methods=["GET"])
+@bp.route("<order_id>/items", methods=["GET"])
 def read_all_items_for_one_order(order_id):
     item_query = Item.query.filter(Item.order_id == order_id)
 
