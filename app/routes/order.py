@@ -30,6 +30,14 @@ def delete_order(order_id):
     return {"details": f"order {order_id} successfully deleted"}
 
 
+@bp.route("", methods=["GET"])
+def read_all_orders():
+    orders = Order.query.all()
+
+    orders_response = [customer.to_dict() for customer in orders]
+
+    return jsonify(orders_response), 200
+
 
 @bp.route("<customer_id>", methods=["GET"])
 def read_all_orders_for_one_customer(customer_id):
