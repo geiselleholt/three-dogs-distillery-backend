@@ -26,7 +26,7 @@ def delete_label(label_id):
     db.session.delete(label)
     db.session.commit()
 
-    return {"details": f"label {Label.label_id} successfully deleted"}
+    return {"details": f"label {label_id} successfully deleted"}
 
 
 @bp.route("<item_id>", methods=["GET"])
