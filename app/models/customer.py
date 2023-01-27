@@ -5,7 +5,7 @@ class Customer(db.Model):
     customer_id = db.Column(db.Integer, primary_key=True)
     user_name = db.Column(db.String)
     password = db.Column(db.String)
-    is_admin = dbColumn(db.Boolean)
+    is_admin = db.Column(db.Boolean, default=False)
     first_name = db.Column(db.String)
     last_name = db.Column(db.String)
     email = db.Column(db.String)
@@ -18,6 +18,7 @@ class Customer(db.Model):
             "id": self.customer_id,
             "user_name": self.user_name,
             "password": self.password,
+            "is_admin": self.is_admin,
             "first_name": self.first_name,
             "last_name": self.last_name,
             "email": self.email,
@@ -32,6 +33,7 @@ class Customer(db.Model):
         new_customer = cls(
             user_name=customer_data["user_name"],
             password=customer_data["password"],
+            is_admin=customer_data["is_admin"],
             first_name=customer_data["first_name"],
             last_name=customer_data["last_name"],
             email=customer_data["email"],

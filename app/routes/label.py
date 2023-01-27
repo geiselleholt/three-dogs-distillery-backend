@@ -7,23 +7,32 @@ bp = Blueprint("label_bp", __name__, url_prefix="/labels")
 
 
 @bp.route("", methods=["POST"])
-def create_order():
+def create_label():
     request_body = request.get_json()
-    new_order = Order.from_dict(request_body)
+    new_label = Label.from_dict(request_body)
 
-    db.session.add(new_order)
+    db.session.add(new_label)
     db.session.commit()
 
-    order_dict = new_order.to_dict()
+    label_dict = new_label.to_dict()
 
-    return make_response(jsonify({"order": order_dict}), 201)
+    return make_response(jsonify({"label": label_dict}), 201)
 
 
-@bp.route("<order_id>", methods=["DELETE"])
-def delete_order(order_id):
-    order = validate_model(Order, order_id)
+@bp.route("<label_id>", methods=["DELETE"])
+def delete_label(label_id):
+    label = validate_model(Label, label_id)
 
-    db.session.delete(order)
+    db.session.delete(label)
     db.session.commit()
 
-    return {"details": f"order {Order.order_id} successfully deleted"}
+    return {"details": f"label {Label.label_id} successfully deleted"}
+
+
+@bp.route("<item_id>", methods=["GET"])
+def read_all_labels_for_one_item(item_id):
+    label_query = Label.query.filter(Label.item_id == item_id)
+
+    label_response = [label.to_dict() for label in label_query]
+
+    return jsonify(label_response), 200
