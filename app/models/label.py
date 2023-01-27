@@ -3,8 +3,8 @@ from app import db
 
 class Label(db.Model):
     label_id = db.Column(db.Integer, primary_key=True)
-    font = db.Column(db.Integer)
-    name = db.Column(db.Integer)
+    font = db.Column(db.String)
+    name = db.Column(db.String)
     message = db.Column(db.String)
     item_id = db.Column(db.Integer, db.ForeignKey("item.item_id"))
     item = db.relationship("Item", back_populates="label")
