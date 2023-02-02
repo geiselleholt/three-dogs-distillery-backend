@@ -17,7 +17,6 @@ def create_app():
     app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get(
         "SQLALCHEMY_DATABASE_URI")
 
-    # Import models here for Alembic setup
     from app.models.customer import Customer
     from app.models.order import Order
     from app.models.item import Item
@@ -26,7 +25,6 @@ def create_app():
     db.init_app(app)
     migrate.init_app(app, db)
 
-    # Register Blueprints here
     from .routes import customer
     from .routes import order
     from .routes import item

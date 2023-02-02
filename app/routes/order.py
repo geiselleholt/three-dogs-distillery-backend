@@ -1,4 +1,4 @@
-from flask import Blueprint, request, jsonify, make_response, abort
+from flask import Blueprint, request, jsonify, make_response
 from app import db
 from app.models.order import Order
 from app.models.item import Item
@@ -34,7 +34,7 @@ def delete_order(order_id):
 def read_all_orders():
     orders = Order.query.all()
 
-    orders_response = [customer.to_dict() for customer in orders]
+    orders_response = [customer.to_dict(customer) for customer in orders]
 
     return jsonify(orders_response), 200
 

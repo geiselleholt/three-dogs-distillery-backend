@@ -41,4 +41,5 @@ class Customer(db.Model):
             address=customer_data["address"]
         )
 
+
         return new_customer

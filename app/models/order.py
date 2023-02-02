@@ -11,17 +11,15 @@ class Order(db.Model):
     customer = db.relationship("Customer", back_populates="orders")
     items = db.relationship("Item", back_populates="order")
 
-    def to_dict(self, order_data):
+    def to_dict(self):
         order_dict = dict(
             id=self.order_id,
             sub_total=self.sub_total,
             total=self.total,
             delivery_date=self.delivery_date,
             status=self.status,
+            customer_id=self.customer_id,
         )
-
-        if self.customer_id:
-            order_dict["customer_id"] = self.customer_id
         
         return order_dict
 
