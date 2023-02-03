@@ -43,7 +43,7 @@ def read_all_orders():
 def read_all_orders_for_one_customer(customer_id):
     order_query = Order.query.filter(Order.customer_id == customer_id)
 
-    order_response = [order.to_dict(order) for order in order_query]
+    order_response = [order.to_dict() for order in order_query]
 
     return jsonify(order_response), 200
 
