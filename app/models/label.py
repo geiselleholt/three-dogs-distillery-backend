@@ -13,8 +13,8 @@ class Label(db.Model):
     def to_dict(self):
         return dict(
             id=self.label_id,
-            name_font=self.font,
-            message_font=self.font,
+            name_font=self.name_font,
+            message_font=self.message_font,
             name=self.name,
             message=self.message,
             item_id=self.item_id
@@ -23,8 +23,8 @@ class Label(db.Model):
     @classmethod
     def from_dict(cls, label_data):
         new_label = cls(
-            name_font=label_data["font"],
-            message_font=label_data["font"],
+            name_font=label_data["name_font"],
+            message_font=label_data["message_font"],
             name=label_data["name"],
             message=label_data["message"],
             item_id=label_data["item_id"]

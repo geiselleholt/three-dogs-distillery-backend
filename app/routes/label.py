@@ -36,3 +36,11 @@ def read_all_labels_for_one_item(item_id):
     label_response = [label.to_dict() for label in label_query]
 
     return jsonify(label_response), 200
+
+@bp.route("", methods=["GET"])
+def read_all_labels():
+    labels = Label.query.all()
+
+    label_response = [label.to_dict() for label in labels]
+
+    return jsonify(label_response), 200
