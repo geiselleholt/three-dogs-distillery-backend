@@ -32,7 +32,7 @@ def create_checkout_session():
             },
             line_items=[
                 {
-                    'price': 'price_1MWxxDDxl1uhmuInz4weCs0W',
+                    'price': 'price_1MYju9Dxl1uhmuInNLCR4lMG',
                     "adjustable_quantity": {"enabled": True, "minimum": 1, "maximum": 10},
                     'quantity': 1,
                 },
