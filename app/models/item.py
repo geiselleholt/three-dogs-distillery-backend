@@ -11,15 +11,20 @@ class Item(db.Model):
     # order = db.relationship("Order", back_populates="items")
     label = db.relationship("Label", back_populates="item")
 
-    def to_dict(self):
-        return dict(
-            id=self.item_id,
-            spirit=self.spirit,
-            flavor=self.flavor,
-            bottle=self.bottle,
-            quantity=self.quantity,
-            # order_id=self.order_id           
-        )
+
+    def to_dict(self, label=False):
+        item_as_dict = {
+            "id": self.item_id, 
+            "spirit": self.spirit, 
+            "flavor": self.flavor, 
+            "bottle": self.bottle, 
+            "quantity": self.quantity
+            }
+        if label:
+            item_as_dict["label"] = [label.to_dict() for label in self.label]
+
+        return item_as_dict
+
 
     @classmethod
     def from_dict(cls, item_data):

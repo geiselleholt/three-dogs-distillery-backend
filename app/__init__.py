@@ -17,6 +17,9 @@ def create_app():
     app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get(
         "SQLALCHEMY_DATABASE_URI")
 
+    app.config["STRIPE_API_KEY"] = os.environ.get(
+        "STRIPE_API_KEY")
+
     from app.models.customer import Customer
     from app.models.order import Order
     from app.models.item import Item
@@ -29,11 +32,13 @@ def create_app():
     from .routes import order
     from .routes import item
     from .routes import label
+    from .routes import server
 
     app.register_blueprint(customer.bp)
     app.register_blueprint(order.bp)
     app.register_blueprint(item.bp)
     app.register_blueprint(label.bp)
+    app.register_blueprint(server.bp)
 
     CORS(app)
     return app
