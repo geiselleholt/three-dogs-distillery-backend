@@ -54,8 +54,8 @@ def create_checkout_session():
             ],
             mode='payment',
             # success_url="https://three-dogs-distillery-backend.herokuapp.com/order/success?session_id={CHECKOUT_SESSION_ID}",
-            success_url="https://three-dogs-distillery-backend.herokuapp.com/thankyou",
-            cancel_url="https://three-dogs-distillery-backend.herokuapp.com/cancelorder",
+            success_url="https://three-dogs-distillery.herokuapp.com/thankyou",
+            cancel_url="https://three-dogs-distillery.herokuapp.com/cancelorder",
             automatic_tax={'enabled': True},
         )
     
