@@ -1,7 +1,6 @@
 from flask import Blueprint, request, jsonify, make_response
 from app import db
 from app.models.item import Item
-from app.models.label import Label
 from app.routes.helper_functions import validate_model
 
 bp = Blueprint("item_bp", __name__, url_prefix="/items")
@@ -28,13 +27,6 @@ def delete_item(item_id):
 
     return {"details": f"Item {item.item_id} successfully deleted"}
 
-# @bp.route("<order_id>", methods=["GET"])
-# def read_all_items_for_one_order(order_id):
-#     item_query = Item.query.filter(Item.order_id == order_id)
-
-#     item_response = [item.to_dict() for item in item_query]
-
-#     return jsonify(item_response), 200
 
 @bp.route("", methods=["GET"])
 def read_all_items():

@@ -7,8 +7,6 @@ class Item(db.Model):
     flavor = db.Column(db.String)
     bottle = db.Column(db.String)
     quantity = db.Column(db.Integer)
-    # order_id = db.Column(db.Integer, db.ForeignKey("order.order_id"))
-    # order = db.relationship("Order", back_populates="items")
     label = db.relationship("Label", back_populates="item")
 
 
@@ -33,7 +31,6 @@ class Item(db.Model):
             flavor=item_data["flavor"],
             bottle=item_data["bottle"],
             quantity=item_data["quantity"],
-            # order_id=item_data["order_id"]
         )
 
         return new_item

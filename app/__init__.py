@@ -20,22 +20,22 @@ def create_app():
     app.config["STRIPE_API_KEY"] = os.environ.get(
         "STRIPE_API_KEY")
 
-    from app.models.customer import Customer
-    from app.models.order import Order
+    # from app.models.customer import Customer
+    # from app.models.order import Order
     from app.models.item import Item
     from app.models.label import Label
 
     db.init_app(app)
     migrate.init_app(app, db)
 
-    from .routes import customer
-    from .routes import order
+    # from .routes import customer
+    # from .routes import order
     from .routes import item
     from .routes import label
     from .routes import server
 
-    app.register_blueprint(customer.bp)
-    app.register_blueprint(order.bp)
+    # app.register_blueprint(customer.bp)
+    # app.register_blueprint(order.bp)
     app.register_blueprint(item.bp)
     app.register_blueprint(label.bp)
     app.register_blueprint(server.bp)
