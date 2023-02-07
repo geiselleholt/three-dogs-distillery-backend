@@ -31,26 +31,26 @@ def create_checkout_session():
               'allowed_countries': ['US'],
             },
             line_items=[
-                # {
-                #     'price': 'price_1MYbslDxl1uhmuInTEyOXSuo',
-                #     "adjustable_quantity": {"enabled": True, "minimum": 1, "maximum": 10},
-                #     'quantity': 1,
-                # },
-                # {
-                #     'price': 'price_1MWxxDDxl1uhmuInz4weCs0W',
-                #     "adjustable_quantity": {"enabled": True, "minimum": 1, "maximum": 10},
-                #     'quantity': 1,
-                # },
                 {
-                    'price': 'price_1MWyCHDxl1uhmuInp1qoBbhf',
+                    'price': 'price_1MYbslDxl1uhmuInTEyOXSuo',
                     "adjustable_quantity": {"enabled": True, "minimum": 1, "maximum": 10},
                     'quantity': 1,
                 },
                 {
-                    'price': 'price_1MYhL3Dxl1uhmuInj1gtIaGB',
+                    'price': 'price_1MWxxDDxl1uhmuInz4weCs0W',
                     "adjustable_quantity": {"enabled": True, "minimum": 1, "maximum": 10},
                     'quantity': 1,
                 },
+                # {
+                #     'price': 'price_1MWyCHDxl1uhmuInp1qoBbhf',
+                #     "adjustable_quantity": {"enabled": True, "minimum": 1, "maximum": 10},
+                #     'quantity': 1,
+                # },
+                # {
+                #     'price': 'price_1MYhL3Dxl1uhmuInj1gtIaGB',
+                #     "adjustable_quantity": {"enabled": True, "minimum": 1, "maximum": 10},
+                #     'quantity': 1,
+                # },
             ],
             mode='payment',
             success_url="http://three-dogs-distillery.herokuapp.com/order/success?session_id={CHECKOUT_SESSION_ID}",
