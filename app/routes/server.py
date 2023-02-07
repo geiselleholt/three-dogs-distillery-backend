@@ -53,8 +53,9 @@ def create_checkout_session():
                 # },
             ],
             mode='payment',
-            success_url="https://three-dogs-distillery-backend.herokuapp.com/order/success?session_id={CHECKOUT_SESSION_ID}",
-            cancel_url="https://three-dogs-distillery-backend.herokuapp.com/" + '?canceled=true',
+            # success_url="https://three-dogs-distillery-backend.herokuapp.com/order/success?session_id={CHECKOUT_SESSION_ID}",
+            success_url="https://three-dogs-distillery-backend.herokuapp.com/thankyou",
+            cancel_url="https://three-dogs-distillery-backend.herokuapp.com/cancelorder",
             automatic_tax={'enabled': True},
         )
     
@@ -63,9 +64,9 @@ def create_checkout_session():
 
     return redirect(checkout_session.url, code=303)
 
-@bp.route('/order/success', methods=['GET'])
-def order_success():
-  session = stripe.checkout.Session.retrieve(request.args.get('session_id'))
-  customer = stripe.Customer.retrieve(session.customer)
+# @bp.route('/order/success', methods=['GET'])
+# def order_success():
+#   session = stripe.checkout.Session.retrieve(request.args.get('session_id'))
+#   customer = stripe.Customer.retrieve(session.customer)
 
-  return render_template_string('<html><body><h1>Thanks for your order, {{customer.name}}!</h1></body></html>', customer=customer)
+#   return render_template_string('<html><body><h1>Thanks for your order, {{customer.name}}!</h1></body></html>', customer=customer)
