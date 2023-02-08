@@ -35,3 +35,11 @@ def read_all_items():
     item_response = [item.to_dict() for item in items]
 
     return jsonify(item_response), 200
+
+@bp.route("<item_id>", methods=["GET"])
+def read_one_item(item_id):
+    item_query = Item.query.filter(Item.item_id == item_id)
+
+    item_response = [item.to_dict() for item in item_query]
+
+    return jsonify(item_response), 200
