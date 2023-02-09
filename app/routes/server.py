@@ -161,8 +161,8 @@ def create_checkout_session():
             },
             line_items= stripe_line_items,
             mode='payment',
-            success_url="https://three-dogs-distillery-backend.herokuapp.com/thankyou",
-            cancel_url="https://three-dogs-distillery-backend.herokuapp.com/cancelorder",
+            success_url="https://three-dogs-backend.herokuapp.com/thankyou",
+            cancel_url="https://three-dogs-backend.herokuapp.com/cancelorder",
             automatic_tax={'enabled': True},
         )
     
