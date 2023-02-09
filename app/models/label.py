@@ -7,6 +7,7 @@ class Label(db.Model):
     message_font = db.Column(db.String)
     name = db.Column(db.String)
     message = db.Column(db.String)
+    image = db.Column(db.String)
     item_id = db.Column(db.Integer, db.ForeignKey("item.item_id"))
     item = db.relationship("Item", back_populates="label")
 
@@ -17,6 +18,7 @@ class Label(db.Model):
             message_font=self.message_font,
             name=self.name,
             message=self.message,
+            image=self.image,
             item_id=self.item_id
         )
 
@@ -27,6 +29,7 @@ class Label(db.Model):
             message_font=label_data["message_font"],
             name=label_data["name"],
             message=label_data["message"],
+            image=label_data["image"],
             item_id=label_data["item_id"]
         )
 
