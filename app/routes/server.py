@@ -52,7 +52,7 @@ def create_checkout_session():
     }
 
     bourbon = {
-                    'price': 'price_1MWxxDDxl1uhmuInz4weCs0W',
+                    'price': 'price_1MaMEcDxl1uhmuInkWmkuXE1',
                     'quantity': stripe_quantity,
     }
 

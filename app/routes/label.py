@@ -9,6 +9,7 @@ bp = Blueprint("label_bp", __name__, url_prefix="/labels")
 @bp.route("", methods=["POST"])
 def create_label():
     request_body = request.get_json()
+    # print(request_body)
     new_label = Label.from_dict(request_body)
 
     db.session.add(new_label)
