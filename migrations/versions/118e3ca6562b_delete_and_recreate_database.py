@@ -1,8 +1,8 @@
-"""drop and create db
+"""delete and recreate database
 
-Revision ID: d5fbb0e1cd05
+Revision ID: 118e3ca6562b
 Revises: 
-Create Date: 2023-02-09 13:50:37.107227
+Create Date: 2023-02-11 15:28:17.192350
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'd5fbb0e1cd05'
+revision = '118e3ca6562b'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -24,6 +24,7 @@ def upgrade():
     sa.Column('flavor', sa.String(), nullable=True),
     sa.Column('bottle', sa.String(), nullable=True),
     sa.Column('quantity', sa.Integer(), nullable=True),
+    sa.Column('email', sa.String(), nullable=True),
     sa.PrimaryKeyConstraint('item_id')
     )
     op.create_table('label',
@@ -32,6 +33,7 @@ def upgrade():
     sa.Column('message_font', sa.String(), nullable=True),
     sa.Column('name', sa.String(), nullable=True),
     sa.Column('message', sa.String(), nullable=True),
+    sa.Column('image', sa.String(), nullable=True),
     sa.Column('item_id', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['item_id'], ['item.item_id'], ),
     sa.PrimaryKeyConstraint('label_id')
