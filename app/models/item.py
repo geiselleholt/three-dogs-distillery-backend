@@ -7,6 +7,7 @@ class Item(db.Model):
     flavor = db.Column(db.String)
     bottle = db.Column(db.String)
     quantity = db.Column(db.Integer)
+    email = db.Column(db.String)
     label = db.relationship("Label", back_populates="item")
 
 
@@ -16,7 +17,8 @@ class Item(db.Model):
             "spirit": self.spirit, 
             "flavor": self.flavor, 
             "bottle": self.bottle, 
-            "quantity": self.quantity
+            "quantity": self.quantity,
+            "email": self.email
             }
         if label:
             item_as_dict["label"] = [label.to_dict() for label in self.label]
@@ -31,6 +33,7 @@ class Item(db.Model):
             flavor=item_data["flavor"],
             bottle=item_data["bottle"],
             quantity=item_data["quantity"],
+            email=item_data["email"],
         )
 
         return new_item
