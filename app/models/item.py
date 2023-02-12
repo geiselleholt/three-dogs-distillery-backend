@@ -33,7 +33,7 @@ class Item(db.Model):
             flavor=item_data["flavor"],
             bottle=item_data["bottle"],
             quantity=item_data["quantity"],
-            email=item_data["email"],
+            email=item_data["email"]
         )
 
         return new_item
