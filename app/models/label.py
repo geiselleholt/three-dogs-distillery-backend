@@ -5,6 +5,8 @@ class Label(db.Model):
     label_id = db.Column(db.Integer, primary_key=True)
     name_font = db.Column(db.String)
     message_font = db.Column(db.String)
+    name_font_color = db.Column(db.String)
+    message_font_color = db.Column(db.String)
     name = db.Column(db.String)
     message = db.Column(db.String)
     image = db.Column(db.String)
@@ -14,10 +16,12 @@ class Label(db.Model):
     def to_dict(self):
         return dict(
             id=self.label_id,
-            name_font=self.name_font,
-            message_font=self.message_font,
             name=self.name,
+            name_font=self.name_font,
+            name_font_color=self.name_font_color,
             message=self.message,
+            message_font=self.message_font,
+            message_font_color=self.message_font_color,
             image=self.image,
             item_id=self.item_id
         )
@@ -25,10 +29,12 @@ class Label(db.Model):
     @classmethod
     def from_dict(cls, label_data):
         new_label = cls(
-            name_font=label_data["name_font"],
-            message_font=label_data["message_font"],
             name=label_data["name"],
+            name_font=label_data["name_font"],
+            name_font_color=label_data["name_font_color"],
             message=label_data["message"],
+            message_font=label_data["message_font"],
+            message_font_color=label_data["message_font_color"],
             image=label_data["image"],
             item_id=label_data["item_id"]
         )
