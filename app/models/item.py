@@ -11,7 +11,7 @@ class Item(db.Model):
     label = db.relationship("Label", back_populates="item")
 
 
-    def to_dict(self, label=False):
+    def to_dict(self, label=True):
         item_as_dict = {
             "id": self.item_id, 
             "spirit": self.spirit, 
@@ -33,7 +33,7 @@ class Item(db.Model):
             flavor=item_data["flavor"],
             bottle=item_data["bottle"],
             quantity=item_data["quantity"],
-            email=item_data["email"]
+            email=item_data["email"],
         )
 
         return new_item
