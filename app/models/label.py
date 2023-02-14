@@ -1,6 +1,5 @@
 from app import db
 
-
 class Label(db.Model):
     label_id = db.Column(db.Integer, primary_key=True)
     name_font = db.Column(db.String)

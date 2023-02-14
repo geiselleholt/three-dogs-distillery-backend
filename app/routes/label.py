@@ -30,14 +30,6 @@ def delete_label(label_id):
     return {"details": f"label {label_id} successfully deleted"}
 
 
-@bp.route("<item_id>", methods=["GET"])
-def read_all_labels_for_one_item(item_id):
-    label_query = Label.query.filter(Label.item_id == item_id)
-
-    label_response = [label.to_dict() for label in label_query]
-
-    return jsonify(label_response), 200
-
 @bp.route("", methods=["GET"])
 def read_all_labels():
     labels = Label.query.all()

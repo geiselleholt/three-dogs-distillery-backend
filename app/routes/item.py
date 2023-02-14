@@ -27,7 +27,6 @@ def delete_item(item_id):
 
     return {"details": f"Item {item.item_id} successfully deleted"}
 
-
 @bp.route("", methods=["GET"])
 def read_all_items():
     items = Item.query.all()
@@ -36,9 +35,9 @@ def read_all_items():
 
     return jsonify(item_response), 200
 
-@bp.route("<item_id>", methods=["GET"])
-def read_one_item(item_id):
-    item_query = Item.query.filter(Item.item_id == item_id)
+@bp.route("<email>", methods=["GET"])
+def read_one_item(email):
+    item_query = Item.query.filter(Item.email == email)
 
     item_response = [item.to_dict() for item in item_query]
 
