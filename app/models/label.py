@@ -2,14 +2,14 @@ from app import db
 
 class Label(db.Model):
     label_id = db.Column(db.Integer, primary_key=True)
-    name_font = db.Column(db.String)
-    message_font = db.Column(db.String)
-    name_font_color = db.Column(db.String)
-    message_font_color = db.Column(db.String)
-    name = db.Column(db.String)
-    message = db.Column(db.String)
-    image = db.Column(db.String)
-    background_color = db.Column(db.String)
+    name_font = db.Column(db.String, nullable=True, default="")
+    message_font = db.Column(db.String, nullable=True, default="")
+    name_font_color = db.Column(db.String, nullable=True, default="")
+    message_font_color = db.Column(db.String, nullable=True, default="")
+    name = db.Column(db.String, nullable=True, default="")
+    message = db.Column(db.String, nullable=True, default="")
+    image = db.Column(db.String, nullable=True, default="")
+    background_color = db.Column(db.String, nullable=True, default="")
     item_id = db.Column(db.Integer, db.ForeignKey("item.item_id"))
     item = db.relationship("Item", back_populates="label")
 

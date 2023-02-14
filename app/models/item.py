@@ -3,11 +3,11 @@ from app import db
 class Item(db.Model):
     item_id = db.Column(db.Integer, primary_key=True)
     spirit = db.Column(db.String)
-    flavor = db.Column(db.String)
+    flavor = db.Column(db.String, nullable=True)
     bottle = db.Column(db.String)
     quantity = db.Column(db.Integer)
-    email = db.Column(db.String)
-    status = db.Column(db.String)
+    email = db.Column(db.String, nullable=True)
+    status = db.Column(db.String, nullable=True, default="Processing" )
     label = db.relationship("Label", back_populates="item")
 
     def to_dict(self, label=True):
