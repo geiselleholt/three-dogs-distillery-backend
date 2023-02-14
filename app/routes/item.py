@@ -42,3 +42,13 @@ def read_one_item(email):
     item_response = [item.to_dict() for item in item_query]
 
     return jsonify(item_response), 200
+
+@bp.route("/<item_id>/status", methods=["PATCH"])
+def update_status(id):
+    item = validate_model(Item, id)
+    request_body = request.get_json()
+    item.status = request_body["status"]
+
+    db.session.commit()
+    return make_response(jsonify({"item": item.to_dict()}), 200)
+    # return jsonify(item.to_dict())
